@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by stoykov on 14.08.2018.
  */
-public class QATestLabHW {
+public class QATestLabHW2_1 {
 
 
 
@@ -45,12 +45,12 @@ public class QATestLabHW {
 
 
     public static WebDriver getChromeDriver(){
-        System.setProperty("webdriver.chrome.driver", QATestLabHW.class.getResource("chromedriver.exe").getPath());
+        System.setProperty("webdriver.chrome.driver", QATestLabHW2_1.class.getResource("chromedriver.exe").getPath());
         return new ChromeDriver();
     }
 
     public static WebDriver getFirefoxDriver(){
-        System.setProperty("webdriver.gecko.driver", QATestLabHW.class.getResource("geckodriver.exe").getPath());
+        System.setProperty("webdriver.gecko.driver", QATestLabHW2_1.class.getResource("geckodriver.exe").getPath());
         return new FirefoxDriver();
     }
 
