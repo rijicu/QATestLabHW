@@ -28,14 +28,40 @@ public class QATestLabHW2b {
         passInput.sendKeys(userAdminPass);
         submitButton.click();
 
-        waitElementToLoad(6000);
-        List<WebElement> mainMenuLinks = driver.findElements(By.className("maintab"));
-        //System.out.println(mainMenuLinks.size());
+
+        waitElementToLoad(3000);
+        int mainMenuSize = driver.findElements(By.className("maintab")).size();
+        //System.out.println(mainMenuSize.size());
 
 
-        for (int i = 0; i < mainMenuLinks.size(); i++){
-            mainMenuLinks.get(i).click();
-            waitElementToLoad(4000);
+        for (int i = 0; i < mainMenuSize; i++){
+
+            try{
+                driver.findElement(By.className("maintab"));
+                List<WebElement> mainMenuLinks = driver.findElements(By.className("maintab"));
+                mainMenuLinks.get(i).click();
+                waitElementToLoad(2000);
+                String header = driver.findElement(By.tagName("h2")).getText();
+                System.out.println(header);
+                driver.navigate().refresh();
+                if (header.equals(driver.findElement(By.tagName("h2")).getText())){
+                    System.out.println("Page not changed!");
+                }else{
+                    System.out.println("Page changed after refresh!");
+                }
+            } catch (org.openqa.selenium.NoSuchElementException e){
+                List<WebElement> mainMenuLinks = driver.findElements(By.className("link-levelone"));
+                mainMenuLinks.get(i).click();
+                waitElementToLoad(2000);
+                String header = driver.findElement(By.tagName("h2")).getText();
+                System.out.println(header);
+                driver.navigate().refresh();
+                if (header.equals(driver.findElement(By.tagName("h2")).getText())){
+                    System.out.println("Page not changed!");
+                }else{
+                    System.out.println("Page changed after refresh!");
+                }
+            }
         }
 
 
