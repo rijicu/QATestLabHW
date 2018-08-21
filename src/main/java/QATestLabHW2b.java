@@ -64,6 +64,13 @@ public class QATestLabHW2b {
             }
         }
 
+        WebElement userBox = driver.findElement(By.id("header_employee_box"));
+        userBox.click();
+        waitElementToLoad(2000);
+
+        WebElement exitButton = driver.findElement(By.id("header_logout"));
+        exitButton.click();
+
 
         driver.quit();
 
