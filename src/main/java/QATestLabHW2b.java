@@ -31,8 +31,6 @@ public class QATestLabHW2b {
 
         waitElementToLoad(3000);
         int mainMenuSize = driver.findElements(By.className("maintab")).size();
-        //System.out.println(mainMenuSize.size());
-
 
         for (int i = 0; i < mainMenuSize; i++){
 
@@ -71,9 +69,7 @@ public class QATestLabHW2b {
         WebElement exitButton = driver.findElement(By.id("header_logout"));
         exitButton.click();
 
-
         driver.quit();
-
     }
 
     public static WebDriver getChromeDriver(){
