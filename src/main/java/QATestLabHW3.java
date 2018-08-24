@@ -31,53 +31,43 @@ public class QATestLabHW3 {
         WebElement passInput = driver.findElement(By.id("passwd"));
         WebElement submitButton = driver.findElement(By.name("submitLogin"));
 
-
+        //Login as admin
         emailInput.clear();
         emailInput.sendKeys(userAdminEmail);
         passInput.clear();
         passInput.sendKeys(userAdminPass);
         submitButton.click();
-        //waitElementToLoad(2000);
-
+        //open Catalog - Category
         WebElement adminCatalog = driver.findElement(By.id("subtab-AdminCatalog"));
         builder.moveToElement(adminCatalog).build().perform();
-        //waitElementToLoad(3000);
         wait.until(ExpectedConditions.elementToBeClickable(By.id("subtab-AdminCategories"))).click();
-
+        //add new category
         WebElement addCategoryButton = driver.findElement(By.xpath("//a[@title='Добавить категорию']"));
         addCategoryButton.click();
-        //wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Добавить категорию']"))).click();
-
         WebElement inputCategoryName = driver.findElement(By.name("name_1"));
         inputCategoryName.clear();
         inputCategoryName.sendKeys("TestCategory");
-
         WebElement saveButton = driver.findElement(By.id("category_form_submit_btn"));
         saveButton.click();
-
+        //check category is created
         String alertMessage = driver.findElement(By.className("alert-success")).getText();
-        System.out.println(alertMessage);
+        //System.out.println(alertMessage);
         if (alertMessage.contains("Создано")){
             System.out.println("Category created!");
         }else{
             System.out.println("Category not created!");
         }
-
-        //System.out.println(driver.findElement(By.className("alert-success")).getText());
-
-        //wait.until(ExpectedConditions.textToBe(By.className("alert-success"),"Создано"));
-
-        waitElementToLoad(3000);
-
-/*
+        //find created category
+        WebElement inputNameFilter = driver.findElement(By.name("categoryFilter_name"));
+        inputNameFilter.clear();
+        inputNameFilter.sendKeys("TestCategory");
+        WebElement searchButton = driver.findElement(By.id("submitFilterButtoncategory"));
+        searchButton.click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//td[contains(text(),'TestCategory')]"))));
+        //exit
         WebElement userBox = driver.findElement(By.id("header_employee_box"));
         userBox.click();
-        waitElementToLoad(2000);
-
-        WebElement exitButton = driver.findElement(By.id("header_logout"));
-        exitButton.click();
-*/
-
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("header_logout"))).click();
 
         driver.quit();
 
