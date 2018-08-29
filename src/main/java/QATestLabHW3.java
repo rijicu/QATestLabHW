@@ -5,9 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.beans.EventHandler;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -22,6 +24,9 @@ public class QATestLabHW3 {
         String userAdminPass = "Xcg7299bnSmMuRLp9ITw";
 
         WebDriver driver = getChromeDriver();
+      //  EventFiringWebDriver eventDriver = new EventFiringWebDriver(driver);
+      //  eventDriver.register(new EventHandler());
+
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         Actions builder = new Actions(driver);
@@ -76,7 +81,7 @@ public class QATestLabHW3 {
 
 
     public static WebDriver getChromeDriver(){
-        System.setProperty("webdriver.chrome.driver", QATestLabHW2a.class.getResource("chromedriver.exe").getPath());
+        System.setProperty("webdriver.chrome.driver", QATestLabHW3.class.getResource("chromedriver.exe").getPath());
         return new ChromeDriver();
     }
 
