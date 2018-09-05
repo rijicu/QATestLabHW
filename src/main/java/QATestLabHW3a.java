@@ -42,7 +42,7 @@ public class QATestLabHW3a {
         builder.moveToElement(adminCatalog).build().perform();
         wait.until(ExpectedConditions.elementToBeClickable(By.id("subtab-AdminCategories"))).click();
         //add new category
-        WebElement addCategoryButton = eventDriver.findElement(By.xpath("//a[@title='Добавить категорию']"));
+        WebElement addCategoryButton = eventDriver.findElement(By.id("page-header-desc-category-new_category"));
         addCategoryButton.click();
         WebElement inputCategoryName = eventDriver.findElement(By.name("name_1"));
         inputCategoryName.clear();
@@ -69,6 +69,7 @@ public class QATestLabHW3a {
         userBox.click();
         wait.until(ExpectedConditions.elementToBeClickable(By.id("header_logout"))).click();
 
+
         eventDriver.quit();
 
     }
@@ -81,10 +82,6 @@ public class QATestLabHW3a {
     public static WebDriver getFirefoxDriver(){
         System.setProperty("webdriver.gecko.driver", QATestLabHW2a.class.getResource("geckodriver.exe").getPath());
         return new FirefoxDriver();
-    }
-
-    public static void waitElementToLoad(int milliseconds) throws InterruptedException {
-        Thread.sleep(milliseconds);
     }
 
 }
